@@ -4,18 +4,45 @@
 <head>
     <title>Admin Portal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
 
 <body>
-   <div id="root">
-    <div id="book-list">
-        
+    <span id="announce">No actions taken yet</span>
+    <br>
+    <button onclick="RefreshBooks()">Refresh list</button>
+    <div id="root">
+        <h3>Update Books</h3>
+        <div id="book-list"></div>
+        <hr>
+        <h3>Create New Book</h3>
+        <div id="add-book">    
+            <!--Did I really copy my html generated from code? Yes, yes i did-->
+            <span>
+                <label for="title">title</label>
+                <input class="create-input" type="text" id="title" name="title">
+            </span>
+            <span>
+                <label for="description">description</label>
+                <textarea class="create-input" id="description" name="description"></textarea>
+            </span>
+            <span>
+                <label for="year">year</label>
+                <input class="create-input" type="number" id="year" name="year" value="2000">
+            </span>
+            <span>
+                <label for="quantity">quantity</label>
+                <input class="create-input" type="number" id="quantity" name="quantity">
+            </span>
+            <span>
+                <label for="imageURL">imageURL</label>
+                <input class="create-input" type="text" id="imageURL" name="imageURL" >
+            </span>
+            <br>
+            <button onclick="AddNewBook()">Add New Book</button>
+        </div>
     </div>
-    <div id="add-book">
-        
-    </div>
-   </div>
     <!-- Our JavaScript Code  -->
     <script src="admin.js"></script>
 </body>

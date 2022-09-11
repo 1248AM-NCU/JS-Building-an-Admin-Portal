@@ -7,11 +7,21 @@ function createInput(name, val, type){
     label.setAttribute("for", name);
     label.textContent = name;
     container.append(label);
-    let input = document.createElement("input");
-    input.setAttribute("type", type);
-    input.setAttribute("id", name);
-    input.setAttribute("name", name);
-    input.setAttribute("value", val);
+    let input;
+    if(type == 'textarea')
+    {
+        input = document.createElement("textarea");
+        input.setAttribute("id", name);
+        input.setAttribute("name", name);
+        input.textContent = val;
+    }
+    else{
+        input = document.createElement("input");
+        input.setAttribute("type", type);
+        input.setAttribute("id", name);
+        input.setAttribute("name", name);
+        input.setAttribute("value", val);
+    }
     container.append(input);
     return { container, input }
 }
@@ -25,20 +35,25 @@ function getBookElement(book)
     for (let i = 0; i < keys.length; i++) {
         const key = keys[i]
         const val = book[key];
-
-        let o = createInput(key, val, getType(typeof(val)));
+        console.log(typeof(val))
+        console.log(val)
+        let o = createInput(key, val, getType(val));
         inputs.push(o.input)
         bookElement.append(o.container)
     }
     return {bookElement, inputs}
 }
 //Gets type for input type from js type
-function getType(type) {
-    switch(type){
+function getType(val) {
+    switch(typeof(val)){
         case "number":
-            return "number";
+            return 'number'
         case "string":
-            return "text";
+            //If the string is actually a number
+            if(!isNaN(val)) return 'number'
+            //If the string is just a tad too much
+            else if(val.length > 35) return 'textarea'
+            else return "text";
         default:
             console.error("didn't quite get the correct type")
             break;
